@@ -39,3 +39,108 @@ void loop() {
   delay(1000);                       // wait for a second
 }
 4.1 Downloaded the Arduino app on my computer
+5.1 Download Atom and the PlatformIO
+5.1.1 Code for the CO2 & Temperature & Humidity Sensor (SCD30)
+#include <Arduino.h>
+#include <Wire.h>
+#include "SparkFun_SCD30_Arduino_Library.h"
+SCD30 airSensor;
+void setup()
+{
+  Wire.begin();
+  Serial.begin(9600);
+  Serial.println("SCD30 Example");
+  airSensor.begin(); //This will cause readings to occur every two seconds
+}
+void loop()
+{
+  if (airSensor.dataAvailable())
+  {
+    Serial.print("co2(ppm):");
+    Serial.print(airSensor.getCO2());
+    
+    Serial.print(" temp(C):");
+    Serial.print(airSensor.getTemperature(), 1);
+
+    Serial.print(" humidity(%):");
+    Serial.print(airSensor.getHumidity(), 1);
+
+    Serial.println();
+  }
+  else
+    Serial.println("No data");
+ delay(1000);
+}
+5.1.2 Code for the Barometer Sensor (BME280)
+#include <Arduino.h>
+
+#include "Seeed_BME280.h"
+#include <Wire.h>
+
+BME280 bme280;
+
+void setup()
+{
+  Serial.begin(9600);
+  if(!bme280.init()){
+    Serial.println("Device error!");
+  }
+}
+
+void loop()
+{
+  float pressure;
+
+  //get and print temperatures
+  Serial.print("Temp: ");
+  Serial.print(bme280.getTemperature());
+  Serial.println("C");//The unit for  Celsius because original arduino don't support speical symbols
+
+  //get and print atmospheric pressure data
+  Serial.print("Pressure: ");
+  Serial.print(pressure = bme280.getPressure());
+  Serial.println("Pa");
+
+  //get and print altitude data
+  Serial.print("Altitude: ");
+  Serial.print(bme280.calcAltitude(pressure));
+  Serial.println("m");
+
+  //get and print humidity data
+  Serial.print("Humidity: ");
+  Serial.print(bme280.getHumidity());
+  Serial.println("%");
+
+  delay(1000);
+}
+5.1.3 Code for the Sunlight Sensor
+#include <Wire.h>
+
+#include "Arduino.h"
+#include "SI114X.h"
+
+SI114X SI1145 = SI114X();
+
+void setup() {
+
+  Serial.begin(9600);
+  Serial.println("Beginning Si1145!");
+
+  while (!SI1145.Begin()) {
+    Serial.println("Si1145 is not ready!");
+    delay(1000);
+  }
+  Serial.println("Si1145 is ready!");
+}
+
+void loop() {
+  Serial.print("//--------------------------------------//\r\n");
+  Serial.print("Vis: "); Serial.println(SI1145.ReadVisible());
+  Serial.print("IR: "); Serial.println(SI1145.ReadIR());
+  //the real UV value must be div 100 from the reg value , datasheet for more information.
+  Serial.print("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
+  delay(1000);
+}
+5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO
+5.1.4.1 Imbar says that Lakitha will show us later
+6.1 The Github that I downloaded onto my Windows refused to run
