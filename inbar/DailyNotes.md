@@ -77,3 +77,8 @@ void loop() {
  - Download the desktop IDE [here](https://www.arduino.cc/en/Main/Software)
  - Make sure to pause the plugin downloaded earlier
  - Try out the exercises from before
+
+#### 2.6 Set up Atom environment
+ - Download Atom [here](https://atom.io/)
+ - Download the PlatformIO package within Atom. Details [here](https://platformio.org/install/ide?install=atom)
+ 
