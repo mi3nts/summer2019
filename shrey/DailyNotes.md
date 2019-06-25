@@ -28,7 +28,7 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 3. Remove USBs and Ethernet cables
 4. Remove USB hub and Ethernet-USB converter
 5. Remove wires attached to terminal blocks in PCB
-5. Unscrew all circuit boards
+5. Unscrew all circuit boards (XU4 is on underside; PCB is on top; camera and light sensor on side.)
 6. Remove GPS module
 
 ### 1.2: Sensor Portion (Exterior)
@@ -49,3 +49,5 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 - ~~Obtain basic familiarization with github~~
 - ~~Finish daily notes~~
 - ~~Chapter 2 Problems of C.M. book~~
+
+**___**
