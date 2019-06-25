@@ -10,7 +10,7 @@
  - Unscrew the lid of the sensor
  - Take out wires
  - Take apart the solar shields
- - Take out the circuit board and the wires
+ - Take out the circuit board and the wiresmega168 
 
 ## June 25th, 2019
 ### Task 2: Set Up Arduino Environment
@@ -232,3 +232,43 @@ void loop() {
    - Vis: 259
    - IR: 253
    - UV: 0.01
+#### 3.5 Use Light-Gesture-Color-Proximity Sensor
+ - Connect the hardware
+ - Download the library from [here](https://github.com/Seeed-Studio/Seeed_TMG3993)
+ - Copy the folder with the library into the lib folder inside your project
+ - Write the following code (found in the example from the library):
+ ````
+ #include <Arduino.h>
+#include <Wire.h>
+#include "Seeed_TMG3993.h"
+
+TMG3993 tmg3993;
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("TMG3993 Proximity Example");
+
+  Wire.begin();
+
+  if (tmg3993.initialize() == false)
+  {
+    Serial.println("Device not found. Check wiring.");
+    while (1);
+  }
+  tmg3993.setupRecommendedConfigForProximity();
+  tmg3993.enableEngines(ENABLE_PON | ENABLE_PEN | ENABLE_PIEN);
+}
+
+void loop()
+{
+  if (tmg3993.getSTATUS() & STATUS_PVALID)
+  {
+    uint8_t proximity_raw = tmg3993.getProximityRaw();  //read the Proximity data will clear the status bit
+    Serial.print("Proximity Raw: ");
+    Serial.println(proximity_raw);
+  }
+  delay(1);
+}
+````
+- Check that the output changes as you move your hand closer and further
