@@ -104,7 +104,7 @@ BME280 bme280;
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("Began")
+  Serial.println("Began");
   if(!bme280.init()){
     Serial.println("Device error!");
   }
