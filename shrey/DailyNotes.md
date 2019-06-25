@@ -1,6 +1,6 @@
 # Daily Notes
 
-## Monday, June 24th, 2019
+## Monday June 24, 2019
 
 ### Task 1: Disassembling Of Particulate Matter Sensor
 
@@ -50,4 +50,31 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 - ~~Finish daily notes~~
 - ~~Chapter 2 Problems of C.M. book~~
 
-**___**
+___
+
+## Tuesday June 25, 2019
+
+**Task 2: Construction of Main Processing Unit For Shinyei Sensors**
+
+Work for today consisted of soldering and wiring circuit boards which would serve as the central management unit for the complete Shinyei<sup>[1]</sup> sensor. The processes of soldering, applying heat shrinks, and stripping wires was learned today. Adam was expecting to have 5 of these 'guts' (as he referred to them) for the Shinyei built today betweeen the two of us, but we managed to produce 10 before we were burnt out.
+
+**Main Components:**
+- Seeduino Microcontroleer
+- Seeduino Base Shield - interfacing with sensors and OLED display
+- Single Cell LiPO Charger (Sunny Buddy) - manages charging of battery from solar panel
+- INA219 DC current sensor ([math]\times[\math] 2) - current and voltage sensor, one for each of battery and solar panel
+- Molex Connector (4-pin)
+- Molex Connector (2-pin) (x2)
+- Terminal Block (2-pin) (x2)
+
+**2.1:** 
+
+Acquired experience soldering & dealing with construction of permanent circuitry instead of the breadboard stuff done at home.
+
+**Homework:**
+- Finish Daily Notes
+- Chapter 2 Problems of C.M. Book
+- Learn C++ Syntax
+- Start TensorFlow Learning
+
+**[1]:** These are cheap air quality sensors that Lakitha and Adam intend on calibrating with machine learning to achieve the same level of accuracy as more expensive sensors. They plan on acquiring data from the expensive sensors and using it to train various ML models. Whichever performs most desirably will be used with the Shinyei sensor data to yield high accuracy with a low cost hardware.
