@@ -272,3 +272,192 @@ void loop()
 }
 ````
 - Check that the output changes as you move your hand closer and further
+
+### Task 4: Connect all sensors together in one program
+#### 4.1 Connect hardware
+ - Use wire bridges and some more boards to connect all of the sensors to the arduino
+#### 4.2 Import necessary libraries
+ - Import the seeed_TMG3993 and the MultichannelGasSensor libraries
+ - Make sure you have installed all the necessary libraries for the other sensors
+ - All of these libraries were refrenced earlie, with the exception of the MultichannelGasSensor library which can be found in this project.
+#### 4.3 Create program
+ - Type the following code, which will run all of the five sensors:
+ ````
+ #include <Arduino.h>
+#include <Wire.h>
+
+#include "Seeed_TMG3993.h"
+#include "Seeed_BME280.h"
+#include "SparkFun_SCD30_Arduino_Library.h"
+#include "SI114X.h"
+#include "MutichannelGasSensor.h"
+
+TMG3993 tmg3993;
+BME280 bme280;
+SCD30 scd30;
+SI114X SI1145 = SI114X();
+
+void setup()
+{
+  Serial.begin(9600);
+  Serial.println("TMG3993 Proximity Example");
+
+  Wire.begin();
+
+  //Initialize TMG3993 sensor
+  if (tmg3993.initialize() == false)
+  {
+    Serial.println("Device not found. Check wiring.");
+    while (1);
+  }
+  tmg3993.setupRecommendedConfigForProximity();
+  tmg3993.enableEngines(ENABLE_PON | ENABLE_PEN | ENABLE_PIEN);
+
+  //Initialize BME 280 sensor
+  if(!bme280.init()){
+     Serial.println("Device error!");
+  }
+
+  scd30.begin();
+
+  //Initialize SI1145
+  while (!SI1145.Begin()) {
+    Serial.println("Si1145 is not ready!");
+    delay(1000);
+  }
+
+  //Initialize MutichannelGasSensor
+  gas.begin(0x04);//the default I2C address of the slave is 0x04
+  gas.powerOn();
+
+}
+
+void trybme280(){
+  //Get BME280 reading
+  float pressure;
+
+  //get and print temperatures
+  Serial.print("Temp: ");
+  Serial.print(bme280.getTemperature());
+  Serial.println("C");//The unit for  Celsius because original arduino don't support speical symbols
+
+  //get and print atmospheric pressure data
+  Serial.print("Pressure: ");
+  Serial.print(pressure = bme280.getPressure());
+  Serial.println("Pa");
+
+  //get and print altitude data
+  Serial.print("Altitude: ");
+  Serial.print(bme280.calcAltitude(pressure));
+  Serial.println("m");
+
+  //get and print humidity data
+  Serial.print("Humidity: ");
+  Serial.print(bme280.getHumidity());
+  Serial.println("%");
+}
+
+void loop()
+{
+  //Get TMG3993 reading
+  if (tmg3993.getSTATUS() & STATUS_PVALID)
+  {
+    uint8_t proximity_raw = tmg3993.getProximityRaw();  //read the Proximity data will clear the status bit
+    Serial.print("Proximity Raw: ");
+    Serial.println(proximity_raw);
+  }
+
+  Serial.println("_________________________");
+  trybme280();
+  Serial.println("_________________________");
+
+  if (scd30.dataAvailable())
+   {
+     Serial.print("co2(ppm):");
+     Serial.print(scd30.getCO2());
+
+     Serial.print(" temp(C):");
+     Serial.print(scd30.getTemperature(), 1);
+
+     Serial.print(" humidity(%):");
+     Serial.print(scd30.getHumidity(), 1);
+
+     Serial.println();
+   }
+   else
+     Serial.println("No data");
+
+  Serial.println("_________________________");
+
+  Serial.print("Vis: ");
+  Serial.println(SI1145.ReadVisible());
+  Serial.print("IR: ");
+  Serial.println(SI1145.ReadIR());
+  //the real UV value must be div 100 from the reg value , datasheet for more information.
+  Serial.print("UV: ");
+  Serial.println((float)SI1145.ReadUV()/100);
+  Serial.println("_________________________");
+
+
+  //Multichannel Gas Sensor Readings
+  float c;
+
+  c = gas.measure_NH3();
+  Serial.print("The concentration of NH3 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_CO();
+  Serial.print("The concentration of CO is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_NO2();
+  Serial.print("The concentration of NO2 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_C3H8();
+  Serial.print("The concentration of C3H8 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_C4H10();
+  Serial.print("The concentration of C4H10 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_CH4();
+  Serial.print("The concentration of CH4 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_H2();
+  Serial.print("The concentration of H2 is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+
+  c = gas.measure_C2H5OH();
+  Serial.print("The concentration of C2H5OH is ");
+  if(c>=0) Serial.print(c);
+  else Serial.print("invalid");
+  Serial.println(" ppm");
+  Serial.println("_________________________");
+
+
+  delay(1000);
+
+  Serial.println();
+  Serial.println();
+  Serial.println();
+
+}
+````
+ - Watch the output and check for correctness
