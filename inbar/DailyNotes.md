@@ -83,18 +83,18 @@ void loop() {
  - Download the PlatformIO package within Atom. Details [here](https://platformio.org/install/ide?install=atom)
  - Search up Seeed BME280 in Libraries in PlatformIO and install
 
-### Task 3: Use Barometer Sensor
-#### 3.1 Connect hardware
+### Task 3: Check the Sensors
+#### 3.1 Connect hardware of the BME280 Sensor
  - Connect the Arduino to the board
  - Connect the barometer sensor to the Arduino
-  - SCL wire goes to A5
-  - SDA to A4
-  - UCC to 5V
-  - GND to the GND hole on the board
+   - SCL wire goes to A5
+   - SDA to A4
+   - UCC to 5V
+   - GND to the GND hole on the board
 #### 3.2 Create the program
  - Write the following code: 
  ````
- /*Test of the BME280 sensor, displaying temp and pressure*/
+ /*Test of the BME280 sensor, displaying temp, humidity, altitude, and pressure*/
 
 #include <Arduino.h>
 #include "Seeed_BME280.h"
@@ -139,3 +139,96 @@ void loop() {
 }
 ````
  - Watch the temperature, pressure, altitude, and humidity being displayed on the serial monitor
+   - Temp: 26.22C
+   - Pressure: 99034.00Pa
+   - Altitude: 192.48m
+   - Humidity: 51%
+#### 3.3 Use the SCD30 CO2 Sensor
+ - Connect the four wires from the arduino to the sensor
+ - Install SparkFun_SCD30_Arduino_Library
+ - Write the following code:
+ ````
+/*Test of the SCD30 sensor, displaying CO2, temperature, and humidity*/
+#include <Arduino.h>
+#include <Wire.h>
+#include "SparkFun_SCD30_Arduino_Library.h"
+
+SCD30 airSensor;
+
+void setup()
+{
+  Wire.begin();
+
+  Serial.begin(9600);
+  Serial.println("SCD30 Example");
+
+  airSensor.begin(); //This will cause readings to occur every two seconds
+}
+
+void loop()
+{
+  if (airSensor.dataAvailable())
+  {
+    Serial.print("co2(ppm):");
+    Serial.print(airSensor.getCO2());
+
+    Serial.print(" temp(C):");
+    Serial.print(airSensor.getTemperature(), 1);
+
+    Serial.print(" humidity(%):");
+    Serial.print(airSensor.getHumidity(), 1);
+
+    Serial.println();
+  }
+  else
+    Serial.println("No data");
+
+  delay(1000);
+}
+````
+ - Temperature is around 26 degrees Celsius, humidity is 53.2%, which is relatively close to the measurements from the BME280 sensor
+ - CO2 ppm seems to be oscillating from 600 to 1500
+#### 3.4 Use the Sunlight Sensor
+ - Connect the wires to the sensor
+ - The library for this sensor is not in Atom
+ - Type the following code:
+````
+#include "Arduino.h"
+#include <Wire.h>
+#include "SI114X.h"
+
+
+SI114X SI1145 = SI114X();
+
+void setup() {
+
+  Serial.begin(9600);
+  Serial.println("Beginning Si1145!");
+
+  while (!SI1145.Begin()) {
+    Serial.println("Si1145 is not ready!");
+    delay(1000);
+  }
+  Serial.println("Si1145 is ready!");
+}
+
+void loop() {
+  Serial.print("//--------------------------------------//\r\n");
+  Serial.print("Vis: ");
+  Serial.println(SI1145.ReadVisible());
+  Serial.print("IR: ");
+  Serial.println(SI1145.ReadIR());
+  //the real UV value must be div 100 from the reg value , datasheet for more information.
+  Serial.print("UV: ");
+  Serial.println((float)SI1145.ReadUV()/100);
+  delay(1000);
+}
+````
+ - When exposed to the room's light, the sensor read:
+   - Vis: 275
+   - IR: 326
+   - UV: 0.10
+ - When covered, it read:
+   - Vis: 259
+   - IR: 253
+   - UV: 0.01
