@@ -88,7 +88,7 @@ The IDE can be found [here](https://www.arduino.cc/en/Main/Software)
 ## Ex7: Install PlatformIO within Atom
 - This [link](https://platformio.org/install/ide?install=atom) gives you installation details 
 
-## EX8: Install the following Libraries on PlatformIO
+## EX8: Install the following Libraries on PlatformIO and run the relevent scripts given: 
 
 - Seeed_BME280.h
 ```
