@@ -81,4 +81,6 @@ void loop() {
 #### 2.6 Set up Atom environment
  - Download Atom [here](https://atom.io/)
  - Download the PlatformIO package within Atom. Details [here](https://platformio.org/install/ide?install=atom)
- 
+ - Search up Seeed BME280 in Libraries in PlatformIO and install
+
+### Task 3: Use Barometer Sensor
