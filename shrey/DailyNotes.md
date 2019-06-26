@@ -279,3 +279,13 @@ void loop() {
 }
 
 ~~~~
+
+Similarly we can use
+~~~~
+sensor.setAltitudeCompensation(altitude in meters);
+~~~~
+and
+~~~~
+setAmbientPressure(pressure in millibars)
+~~~~
+to set default altitude and pressure respectively.
