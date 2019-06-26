@@ -484,4 +484,5 @@ The follwoing procedures may have some errors or omissions
  - Connect the red wire from the port on the Sunny Buddy to the battery sensor
 #### 5.5 Finish up
  - Connect the four-wire cable to the main Seeduino
+ - Connect one end of a two-wire cable to port of the Seeduino, and solder the other end to the load wire holes of the Sunny Buddy
  - Cover the Seeduino with a base shield
