@@ -9,7 +9,7 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 - A portion containing the sensor itself (Optical Particle Counter) and an Argon Arduino Board to manage it.
 - A portion containing a GPS, camera module, and the processing units
 
-### 1.1: Processing Portion (Interior)
+#### 1.1: Processing Portion (Interior)
 
 **Main Components:**
 
@@ -31,7 +31,7 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 5. Unscrew all circuit boards (XU4 is on underside; PCB is on top; camera and light sensor on side.)
 6. Remove GPS module
 
-### 1.2: Sensor Portion (Exterior)
+#### 1.2: Sensor Portion (Exterior)
 
 **Main Components:**
 
@@ -54,9 +54,14 @@ ___
 
 ## Tuesday June 25, 2019
 
-**Task 2: Construction of Main Processing Unit For Shinyei Sensors**
+### Task 2: Construction of Main Processing Unit For Shinyei Sensors
 
-Work for today consisted of soldering and wiring circuit boards which would serve as the central management unit for the complete Shinyei<sup>[1]</sup> sensor. The processes of soldering, applying heat shrinks, and stripping wires was learned today. Adam was expecting to have 5 of these 'guts' (as he referred to them) for the Shinyei built today betweeen the two of us, but we managed to produce 10 before we were burnt out.
+Work for today consisted of soldering and wiring circuit boards which would serve as the central management unit for the complete Shinyei<sup>[1]</sup> sensor.
+
+The processes of soldering, applying heat shrinks, and stripping wires was learned today. Adam was expecting to have 5 of these 'guts' (as he referred to them) for the Shinyei built today betweeen the two of us, but we managed to produce 10 before we were burnt out.
+
+Experience was acquired soldering & dealing with construction of permanent circuitry instead of the breadboard stuff done at home.
+
 
 **Main Components:**
 - Seeduino Microcontroleer
@@ -67,9 +72,30 @@ Work for today consisted of soldering and wiring circuit boards which would serv
 - Molex Connector (2-pin) (x2)
 - Terminal Block (2-pin) (x2)
 
-**2.1:** 
+#### 2.1: Solder Connections From Seeduino To INA219s
 
-Acquired experience soldering & dealing with construction of permanent circuitry instead of the breadboard stuff done at home.
+1. Solder a 2-pin terminal block to each of two INA219 current sensors.
+2. Cut a 4-pin Molex to Molex connecter in half and attach one end to the outermost Molex receiver on the Seeduino.
+3. Split each of the four wires coing from the Molex connecter attached to the Seeduino by soldering two wires onto each of the aforementioned four wires.
+4. Solder a red split wire to VCC on an INA219.
+5. Solder a black split wire to Gnd on the same INA219.
+6. Solder a yellow split wire to Scl on the same INA219.
+7. Solder a white split wire to Sda on the same INA219.
+8. Repeat the previous four steps with the other INA219.
+
+#### 2.2: Solder Connections From LiPI Charger
+
+9. Cut off a 2-pin Molex connecter from a LiPO battery.
+10. Attach the Molex end to the Molex receiver on the Sunny Buddy.
+11. Solder the black wire on the Molex wire to "Solar -" on the Sunny Buddy.
+12. Solder a wire to "Solar -" from above the circuit board of the Sunny Buddy /9the other end is loose and will act as a central Gnd).
+13. Connect the red wire from the 2-pin Molex to Vin- on an INA219.
+14. Connect "Solar +" from the Sunny Buddy to Vin- on the other INA219
+
+#### 2.3: Conclusing Steps 
+
+15. Push the Seeduino Base Shield onto the Seeduino and verify that the power switch is set to 3.3V.
+16. Solder A0 on the INA219 to which "Solar +" was connected to change the address of an INA219 to have Seeduino be able to distinguish between the INA219s
 
 **Homework:**
 - Finish Daily Notes
