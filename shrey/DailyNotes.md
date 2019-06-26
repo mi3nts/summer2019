@@ -83,7 +83,7 @@ Experience was acquired soldering & dealing with construction of permanent circu
 7. Solder a white split wire to Sda on the same INA219.
 8. Repeat the previous four steps with the other INA219.
 
-#### 2.2: Solder Connections From LiPI Charger
+#### 2.2: Solder Connections From Single Cell LiPO Charger (Sunny Buddy)
 
 9. Cut off a 2-pin Molex connecter from a LiPO battery.
 10. Attach the Molex end to the Molex receiver on the Sunny Buddy.
