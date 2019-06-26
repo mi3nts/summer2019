@@ -12,7 +12,7 @@
  - Take apart the solar shields
  - Take out the circuit board and the wiresmega168 
 
-## June 25th, 2019
+## June 25, 2019
 ### Task 2: Set Up Arduino Environment
 #### 2.1 Set up Arduino Development Envioronment
  - Go to the web development editor [here](https://www.arduino.cc/en/Main/Software) and create an account
@@ -461,3 +461,27 @@ void loop()
 }
 ````
  - Watch the output and check for correctness
+
+### June 26, 2019
+#### Task 5: Building Sensor
+The follwoing procedures may have some errors or omissions
+##### 5.1 Splitting wires
+ - Take a four-wire cable and cut in the middle, and separate the four wires
+ - Expose the ends of each wire
+ - Hook the end of each wire and tie to combine with two more wires
+ - Solder the wires together, to make each of the four wires split into two wires
+ - Cover the exposed wire with heat shrink
+#### 5.2 Prepare the two voltage sensors (one for the battery and one for the solar panel)
+ - Attach a two-pin wire holder to each sensor and solder
+ - For each of the sensor, attach four of the split wires into the designated holes (GND, VCC, SDA, SLC)
+#### 5.3 Prepare the Sunny Buddy
+ - Connect a two wire cable to the port on the Sunny Buddy
+ - Connect the black wire from this cable to the "solar -" hole and solder. Solder another wire to its other side in order to extend it. Cover exposed wire with heat shrink.
+#### 5.4 Connect Seeduino to voltage sensors
+ - Connect a blue wire to the "solar +" hole on the Sunny Buddy
+ - Connect this blue wire to the pin on the solar panel voltage sensor
+ - Solder a bit of tin onto the address of the solar panel voltage sensor to change the address
+ - Connect the red wire from the port on the Sunny Buddy to the battery sensor
+#### 5.5 Finish up
+ - Connect the four-wire cable to the main Seeduino
+ - Cover the Seeduino with a base shield
