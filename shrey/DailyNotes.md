@@ -104,3 +104,8 @@ Rough circuit sketch can be found on page 79 of research notebook.
 - ~~Learn Some C++ Syntax~~
 
 **[1]:** These are cheap air quality sensors that Lakitha and Adam intend on calibrating with machine learning to achieve the same level of accuracy as more expensive sensors. They plan on acquiring data from the expensive sensors and using it to train various ML models. Whichever performs most desirably will be used with the Shinyei sensor data to yield high accuracy with a low cost hardware.
+
+## Wednesday, June 26, 2019
+
+- Logged into the web IDE
+- Finished exercises 2 and 3
