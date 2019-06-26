@@ -97,6 +97,8 @@ Experience was acquired soldering & dealing with construction of permanent circu
 15. Push the Seeduino Base Shield onto the Seeduino and verify that the power switch is set to 3.3V.
 16. Solder A0 on the INA219 to which "Solar +" was connected to change the address of an INA219 to have Seeduino be able to distinguish between the INA219s
 
+Rough circuit sketch can be found on page 79 of research notebook.
+
 **Homework:**
 - Finish Daily Notes
 - Chapter 2 Problems of C.M. Book
