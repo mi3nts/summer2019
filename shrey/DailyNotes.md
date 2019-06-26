@@ -126,7 +126,7 @@ int proximity_status = 0;
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("TMG3993");
+  Serial.println("TMG3993 Proximity and RGBC");
 
   Wire.begin();
 
@@ -174,7 +174,7 @@ TMG3993 sensor;
 void setup()
 {
   Serial.begin(9600);
-  Serial.println("TMG3993 Color Example");
+  Serial.println("TMG3993 Proximity and RGBC");
 
   Wire.begin();
 
@@ -230,6 +230,7 @@ BME280 sensor;
 void setup() {
   Wire.begin();
   Serial.begin(9600);
+  Serial.println("BME280 Temperature, Pressure, Altitude, and Humidity");
   if (!sensor.init()) {
     Serial.print("Error with sensor");
   }
@@ -247,6 +248,34 @@ void loop() {
   Serial.print(sensor.getHumidity());
   Serial.print("% \n --- \n");
   delay(1000);
+}
+
+~~~~
+- Next was SCD30 CO2, Temperature and Humidity Sensor
+- Here is code to detect all with measurement interval 2 seconds
+
+~~~~
+#include <Wire.h>
+#include "SparkFun_SCD30_Arduino_Library.h"
+
+SCD30 sensor;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  Serial.println("SCD30 CO2, Temperature, and Humidity");
+  sensor.begin();
+  sensor.setMeasurementInterval(2);
+}
+
+void loop() {
+  Serial.print("CO2 Concentration:");
+  Serial.print(sensor.getCO2());
+  Serial.print(" ppm\nTemperature: ");
+  Serial.print(sensor.getTemperature());
+  Serial.print(" C\nHumidity: ");
+  Serial.print(sensor.getHumidity());
+  Serial.print("%\n---\n");
 }
 
 ~~~~
