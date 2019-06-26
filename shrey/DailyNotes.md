@@ -236,14 +236,16 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("Temperature: ");
+  Serial.print("Temperature: ");
   Serial.print(sensor.getTemperature());
-  Serial.println("Pressure: ");
+  Serial.print(" C\nPressure: ");
   Serial.print(sensor.getPressure());
-  Serial.println("Altitude: ");
+  Serial.print(" Pa");
+  Serial.print("\nAltitude: ");
   Serial.print(sensor.calcAltitude(sensor.getPressure()));
-  Serial.println("Humidity: ");
+  Serial.print("m \nHumidity: ");
   Serial.print(sensor.getHumidity());
+  Serial.print("% \n --- \n");
   delay(1000);
 }
 
