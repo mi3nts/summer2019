@@ -382,11 +382,11 @@ void setup() {
 }
 
 void loop() {
-  Serial.print("//--------------------------------------//\r\n");
-  Serial.print("Vis: "); Serial.println(SI1145.ReadVisible());
-  Serial.print("IR: "); Serial.println(SI1145.ReadIR());
+  Serial.print("---\n");
+  Serial.println("Vis: "); Serial.println(SI1145.ReadVisible());
+  Serial.println("IR: "); Serial.println(SI1145.ReadIR());
   //the real UV value must be div 100 from the reg value , datasheet for more information.
-  Serial.print("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
+  Serial.println("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
   delay(1000);
 }
 ~~~~
