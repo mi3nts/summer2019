@@ -100,7 +100,7 @@ Experience was acquired soldering & dealing with construction of permanent circu
 Rough circuit sketch can be found on page 79 of research notebook.
 
 **Homework:**
-- Finish Daily Notes
+- ~~Finish Daily Notes~~
 - Chapter 2 Problems of C.M. Book
 - Learn C++ Syntax
 
