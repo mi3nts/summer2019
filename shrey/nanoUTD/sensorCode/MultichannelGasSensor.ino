@@ -1,5 +1,5 @@
 /*
-Adapted from example code.
+Written by Shrey Joshi
 
 Displays concentrations of NH3, CO, NO2, C3H8, C4H10, CH4, H2, C2H5OH.
 */
@@ -17,56 +17,20 @@ void setup()
 
 void loop()
 {
-    float c;
-
-    c = gas.measure_NH3();
-    Serial.print("The concentration of NH3 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_CO();
-    Serial.print("The concentration of CO is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_NO2();
-    Serial.print("The concentration of NO2 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C3H8();
-    Serial.print("The concentration of C3H8 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C4H10();
-    Serial.print("The concentration of C4H10 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_CH4();
-    Serial.print("The concentration of CH4 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_H2();
-    Serial.print("The concentration of H2 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C2H5OH();
-    Serial.print("The concentration of C2H5OH is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
+    char gasses[8] = ["NH3", "CO", "NO2", "C3H8", "C4H10", "CH4", "H2", "C2H5OH"];
+    float concentrations[8] = [gas.measure_NH3, gas.measure_CO, gas.measure_NO2, gas.measure_C3H8, gas.measure_C4H10, gas.measure_CH4, gas.measure_H2, gas.measure_C2H5OH];
+    
+    for (int i = 0; i < 8; i++) {
+        Serial.print("The concentration of ");
+        Serial.print(gasses[i]);
+        Serial.print(" is:");
+        if (concentrations[i] >= 0) {
+            Serial.print(concentrations[i]);
+        } else {
+            Serial.print("invalid");
+        }
+        Serial.println(" ppm\n");
+    }
     delay(1000);
     Serial.println("---");
 }
