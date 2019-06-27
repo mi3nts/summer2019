@@ -124,13 +124,13 @@ Work done today was using the different air quality sensors and coding them to d
 ### Task 4: Obtain Familiarization With The Air Quality Sensors
 
 These consisted of the following:
-- BME280 - (Temperature, Pressure, Light, Humidity)
+- BME280 - (Temperature, Pressure, Altitude, Humidity)
 - TMG3993 - (Light, Gesture, RGBC, Proximity)
 - SCD30 - (CO2 Concentration, Temperature, Humidity)
 - Multichannel Gas Sensor - (Concentrations of NH<sub>3</sub>, CO, NO<sub>2</sub>, C<sub>3</sub>H<sub>8</sub>, C<sub>4</sub>H<sub>10</sub>, CH<sub>4</sub>, H<sub>2</sub>, C<sub>2</sub>H<sub>5</sub>OH)
 
 
-#### 4.1: BME280 - Temperature, Pressure, Light, Humidity
+#### 4.1: BME280 - Temperature, Pressure, Altitude, Humidity
 
 Following is the code for Nano to print everything BME280 can sense with a update delay of 1 second
 
@@ -256,7 +256,7 @@ Following is the code for reading RGBC data (C stands for clear) for same sensor
 - - Run following code only if sensor status is acquired and is valid (working properly)
 - - - Initialize r, g, b, c, lux, cct
 - - - Get RGBC data by passing pointers of r, g, b, c to getRGBCRaw function so that it may overwrite those values
-- - - Pass r, g, b, c to getLux and getCCt functions to get illuminance in luxes and CCT (Correlated Color Temperature) in Kelvin
+- - - Pass r, g, b, c to getLux and getCCT functions to get illuminance in luxes and CCT (Correlated Color Temperature) in Kelvin
 - - - Print all this info to Serial
 - - Delay 1 second for stability and readability
 
@@ -511,3 +511,8 @@ void loop() {
 - Start learning Python-TensorFlow
 - Learn mechanics of RNNs, LSTM, CNNs
 - Continue RHW physics
+
+References for quadrotor SLAM:
+
+(1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/
+(2): https://github.com/mrharicot/monodepth/
