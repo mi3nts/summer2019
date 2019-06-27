@@ -50,7 +50,7 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 - ~~Finish daily notes~~
 - ~~Chapter 2 Problems of C.M. book~~
 
-___
+__________________________________________________________________________________________________________________________________
 
 ## Tuesday June 25, 2019
 
@@ -105,6 +105,8 @@ Rough circuit sketch can be found on page 79 of research notebook.
 
 **[1]:** These are cheap air quality sensors that Lakitha and Adam intend on calibrating with machine learning to achieve the same level of accuracy as more expensive sensors. They plan on acquiring data from the expensive sensors and using it to train various ML models. Whichever performs most desirably will be used with the Shinyei sensor data to yield high accuracy with a low cost hardware.
 
+__________________________________________________________________________________________________________________________________
+
 ## Wednesday, June 26, 2019
 
 Work done today was using the different air quality sensors and coding them to display meaningful data.
@@ -134,11 +136,11 @@ Following is the code for Nano to print everything BME280 can sense with a updat
 
 - Include libraries
 - Initialize sensor as instance of BME280 object
-- Void setup
+- Setup
 - - Initialize Wire
 - - Initialize Serial with baud rate 9600
 - - If sensor fails to initialize then print error
-- Void loop
+- Loop
 - - Print all information acquired by sensor to Serial Monitor
 - - Remember that altitude is calculated as a function of pressure
 
@@ -183,12 +185,12 @@ Following is the code for proximity detection from the TMG3993. It prints when p
 - Include libraries
 - Initialize sensor as instance of TMG3993 object
 - Initialize status of proximity as 0 (removed)
-- Void setup
+- Setup
 - - Initialize Serial with baud rate 9600 and print sensor info
 - - Initialize Wire
 - - If sensor fails to initialize then print error
 - - Setup sensor for proximity detection
-- Void loop
+- Loop
 - - Run following code only if sensor status is acquired and is valid (working properly)
 - - - Get proximity of object to sensor
 - - - If proximity is above threshold and status of proximity is 0 (removed) then print detection to Serial and set new status of proximity as 1 (detected)
@@ -245,12 +247,12 @@ Following is the code for reading RGBC data (C stands for clear) for same sensor
 
 - Include libraries
 - Initialize sensor as instance of TMG3993 object
-- Void setup
+- Setup
 - - Initialize Serial with baud rate 9600 and print sensor info
 - - Initialzie Wire
 - - If sensor fails to initialize then print error
 - - Set up sensor for sensing RGBC
-- Void loop
+- Loop
 - - Run following code only if sensor status is acquired and is valid (working properly)
 - - - Initialize r, g, b, c, lux, cct
 - - - Get RGBC data by passing pointers of r, g, b, c to getRGBCRaw function so that it may overwrite those values
@@ -321,11 +323,11 @@ Following is code to detect all information from SCD30 sensor with measurement i
 
 - Include libraries
 - Initialize sensor as instance of SCD30 object
-- Void setup
+- Setup
 - - Initialize Wire
 - - Initialize Serial with baud rate 9600 and print sensor information
 - - Initialize sensor and set measurement interval 2 seconds
-- Void loop
+- Loop
 - - Print sensor info to Serial Monitor
 
 ~~~~
@@ -358,7 +360,7 @@ void loop() {
 
 ~~~~
 
-- Similarly we can use
+Similarly we can use
 ~~~~
 sensor.setAltitudeCompensation(altitude in meters);
 ~~~~
@@ -373,10 +375,10 @@ to set default altitude and pressure respectively.
 Following is the code for printing all information from this sensor to Serial Monitor. Due to time constraints, preheating and calibration were omitted.
 
 - Include libraries
-- Void setup
+- Setup
 - - Initialize Serial with baud rate 9600
 - - Initialize sensor communication and power on
-- Void loop
+- Loop
 - - For each gass measurable by the sensor, find its concentration as sensed
 - - If concentration < 0 ppm then print error
 - - Otherwise print gas and corresponding concentration to Serial Monitor
