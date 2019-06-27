@@ -107,9 +107,9 @@ Rough circuit sketch can be found on page 79 of research notebook.
 
 ## Wednesday, June 26, 2019
 
-### Task 3: Complete Arduino Exercises Given On Github
-
 Work done today was using the different air quality sensors and coding them to display meaningful data.
+
+### Task 3: Complete Arduino Exercises Given On Github
 
 - Logged into the Arduino web IDE
 - Finished exercises 2, 3 and 5; they were trivial
@@ -120,14 +120,63 @@ Work done today was using the different air quality sensors and coding them to d
 
 
 ### Task 4: Obtain Familiarization With The Air Quality Sensors
+
 These consisted of the following:
 - BME280 - (Temperature, Pressure, Light, Humidity)
 - TMG3993 - (Light, Gesture, RGBC, Proximity)
 - SCD30 - (CO2 Concentration, Temperature, Humidity)
 - Multichannel Gas Sensor - (Concentrations of NH<sub>3</sub>, CO, NO<sub>2</sub>, C<sub>3</sub>H<sub>8</sub>, C<sub>4</sub>H<sub>10</sub>, CH<sub>4</sub>, H<sub>2</sub>, C<sub>2</sub>H<sub>5</sub>OH)
 
+
+#### 4.1: BME280 - Temperature, Pressure, Light, Humidity
+
+Following is the code for it to print everything with a update delay of 1 second
+
+- Include libraries
+- Initialize instance of BME280 object
+- Void Setup
+- - Initialize Wire
+- - Initialize Serial with baud rate 9600
+- - If sensor fails to initialize then print error
+- Void Loop
+- - Print all information acquired by sensor to Serial Monitor
+- - Remember that altitude is calculated as a function of pressure
+
+~~~~
+#include <Wire.h>
+#include "Seeed_BME280.h"
+
+BME280 sensor;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  Serial.println("BME280 Temperature, Pressure, Altitude, and Humidity");
+  if (!sensor.init()) {
+    Serial.print("Error with sensor");
+  }
+}
+
+void loop() {
+  Serial.print("Temperature: ");
+  Serial.print(sensor.getTemperature());
+  Serial.print(" C\nPressure: ");
+  Serial.print(sensor.getPressure());
+  Serial.print(" Pa");
+  Serial.print("\nAltitude: ");
+  Serial.print(sensor.calcAltitude(sensor.getPressure()));
+  Serial.print("m \nHumidity: ");
+  Serial.print(sensor.getHumidity());
+  Serial.print("% \n --- \n");
+  delay(1000);
+}
+
+
 - Worked on the Light, Gesture, Proximity, Color Sensor
 - Here is code for proximity detection. It prints when a proximity is detected or removed. When status of proximity changes, the builtin LED blinks.
+
+
+
 
 ~~~~
 
@@ -233,37 +282,6 @@ void loop()
 }
 ~~~~
 
-- Next is the BME280 Sensor for altitude, pressure, and temperature
-- Here is the code for it to print everything with a update delay of 1 second
-
-~~~~
-#include <Wire.h>
-#include "Seeed_BME280.h"
-
-BME280 sensor;
-
-void setup() {
-  Wire.begin();
-  Serial.begin(9600);
-  Serial.println("BME280 Temperature, Pressure, Altitude, and Humidity");
-  if (!sensor.init()) {
-    Serial.print("Error with sensor");
-  }
-}
-
-void loop() {
-  Serial.print("Temperature: ");
-  Serial.print(sensor.getTemperature());
-  Serial.print(" C\nPressure: ");
-  Serial.print(sensor.getPressure());
-  Serial.print(" Pa");
-  Serial.print("\nAltitude: ");
-  Serial.print(sensor.calcAltitude(sensor.getPressure()));
-  Serial.print("m \nHumidity: ");
-  Serial.print(sensor.getHumidity());
-  Serial.print("% \n --- \n");
-  delay(1000);
-}
 
 ~~~~
 - Next was SCD30 CO2, Temperature and Humidity Sensor
