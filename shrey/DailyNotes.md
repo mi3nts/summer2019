@@ -45,7 +45,7 @@ Today's work consisted of disassembling particulate matter (PM) sensors. There w
 4. Unscrew PCB
 5. Unplug all wires and cut zipties
 
-**Homework:**
+**Homework For Today:**
 - ~~Obtain basic familiarization with github~~
 - ~~Finish daily notes~~
 - ~~Chapter 2 Problems of C.M. book~~
@@ -99,7 +99,7 @@ Experience was acquired soldering & dealing with construction of permanent circu
 
 Rough circuit sketch can be found on page 79 of research notebook.
 
-**Homework:**
+**Homework For Today:**
 - ~~Finish Daily Notes~~
 - ~~Learn Some C++ Syntax~~
 
@@ -504,3 +504,10 @@ void loop() {
 ~~~~
 
 - Receiving baud rate had to be altered from 9600 to 115200 however due to unknown reasons, even when Serial.begin was run with an argument of 9600. It could be a bug in the Nano or maybe it is just how the SI114X sensor transmitts information.
+
+**Homework:**
+- Finish daily notes
+- Continue learning C++
+- Start learning Python-TensorFlow
+- Learn mechanics of RNNs, LSTM, CNNs
+- Continue RHW physics
