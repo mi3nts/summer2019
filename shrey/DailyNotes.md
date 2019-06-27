@@ -107,9 +107,24 @@ Rough circuit sketch can be found on page 79 of research notebook.
 
 ## Wednesday, June 26, 2019
 
-- Logged into the web IDE
-- Finished exercises 2 and 3
-- Arduino IDE, Atom IDE, and Platform.io were preinstalled
+### Task 3: Complete Arduino Exercises Given On Github
+
+Work done today was using the different air quality sensors and coding them to display meaningful data.
+
+- Logged into the Arduino web IDE
+- Finished exercises 2, 3 and 5; they were trivial
+- Arduino IDE, Atom IDE, and Platform.io were preinstalled on the Ubuntu computer that was used for this
+- Initially there was some difficulty with Exercise 8, largely due to the fact that no prior knowledge or experience existed about Ubuntu OS and Atom IDE, but after some searching the problems were resolved.
+- Most modules I had worked with in the past required specification of which pins were to be used. In the code provided, there was no such mention and therefore I thought the code was meant to be run without a sensor.
+- Upon running the code, the outputs were all printing 0, so there was something wrong. Upon connecting the BME280 sensor, the readings became normal.
+
+
+### Task 4: Obtain Familiarization With The Air Quality Sensors
+These consisted of the following:
+- BME280 - (Temperature, Pressure, Light, Humidity)
+- TMG3993 - (Light, Gesture, RGBC, Proximity)
+- SCD30 - (CO2 Concentration, Temperature, Humidity)
+- Multichannel Gas Sensor - (Concentrations of NH<sub>3</sub>, CO, NO<sub>2</sub>, C<sub>3</sub>H<sub>8</sub>, C<sub>4</sub>H<sub>10</sub>, CH<sub>4</sub>, H<sub>2</sub>, C<sub>2</sub>H<sub>5</sub>OH)
 
 - Worked on the Light, Gesture, Proximity, Color Sensor
 - Here is code for proximity detection. It prints when a proximity is detected or removed. When status of proximity changes, the builtin LED blinks.
@@ -218,7 +233,7 @@ void loop()
 }
 ~~~~
 
-- Next is the BMP280 Sensor for altitude, pressure, and temperature
+- Next is the BME280 Sensor for altitude, pressure, and temperature
 - Here is the code for it to print everything with a update delay of 1 second
 
 ~~~~
