@@ -1,0 +1,28 @@
+/*
+Written by Shrey Joshi.
+
+Displays CO2 Concetration in ppm, Temperature in Celsius, and Humidity.
+*/
+
+#include <Wire.h>
+#include "SparkFun_SCD30_Arduino_Library.h"
+
+SCD30 sensor;
+
+void setup() {
+  Wire.begin();
+  Serial.begin(9600);
+  Serial.println("SCD30 CO2, Temperature, and Humidity");
+  sensor.begin();
+  sensor.setMeasurementInterval(2);
+}
+
+void loop() {
+  Serial.print("CO2 Concentration:");
+  Serial.print(sensor.getCO2());
+  Serial.print(" ppm\nTemperature: ");
+  Serial.print(sensor.getTemperature());
+  Serial.print(" C\nHumidity: ");
+  Serial.print(sensor.getHumidity());
+  Serial.print("%\n---\n");
+}
