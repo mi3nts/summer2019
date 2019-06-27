@@ -383,9 +383,10 @@ Following is the code for printing all information from this sensor to Serial Mo
 - - If concentration < 0 ppm then print error
 - - Otherwise print gas and corresponding concentration to Serial Monitor
 - - Delay 1 second for stability and readability
-~~~~
-/*
-Adapted from example code
+~~~~/*
+Written by Shrey Joshi
+
+Displays concentrations of NH3, CO, NO2, C3H8, C4H10, CH4, H2, C2H5OH.
 */
 
 #include <Arduino.h>
@@ -394,66 +395,31 @@ Adapted from example code
 
 void setup()
 {
-    Serial.begin(9600);  // start serial for output
+    Serial.begin(9600);
     gas.begin(0x04); //the default I2C address of the slave is 0x04
     gas.powerOn();
 }
 
 void loop()
 {
-    float c;
-
-    c = gas.measure_NH3();
-    Serial.print("The concentration of NH3 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_CO();
-    Serial.print("The concentration of CO is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_NO2();
-    Serial.print("The concentration of NO2 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C3H8();
-    Serial.print("The concentration of C3H8 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C4H10();
-    Serial.print("The concentration of C4H10 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_CH4();
-    Serial.print("The concentration of CH4 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_H2();
-    Serial.print("The concentration of H2 is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
-    c = gas.measure_C2H5OH();
-    Serial.print("The concentration of C2H5OH is ");
-    if(c>=0) Serial.print(c);
-    else Serial.print("invalid");
-    Serial.println(" ppm");
-
+    char gasses[8] = {'NH3', 'CO', 'NO2', 'C3H8', 'C4H10', 'CH4', 'H2', 'C2H5OH};
+    float concentrations[8] = {gas.measureNH3(), gas.measureCO2(), gas.measureNO2(), gas.measureC3H8(), gas.measureC4H10(), gas.measureCH4(), gas.measureH2(), gas.measureC2H5OH()};
+    
+    for (int i = 0; i < 8; i++) {
+        Serial.print("The concentration of ");
+        Serial.print(gasses[i]);
+        Serial.print(" is:");
+        if (concentrations[i] >= 0) {
+            Serial.print(concentrations[i]);
+        } else {
+            Serial.print("invalid");
+        }
+        Serial.println(" ppm\n");
+    }
     delay(1000);
     Serial.println("---");
 }
+
 ~~~~
 
 #### 4.4: Grove Sunlight Sensor: Visible, IR, UV Light
@@ -505,14 +471,16 @@ void loop() {
 
 - Receiving baud rate had to be altered from 9600 to 115200 however due to unknown reasons, even when Serial.begin was run with an argument of 9600. It could be a bug in the Nano or maybe it is just how the SI114X sensor transmitts information.
 
+All code can be found under NanoUTD/sensorCode.
+
 **Homework:**
-- Finish daily notes
+- ~~Finish daily notes~~
 - Continue learning C++
 - Start learning Python-TensorFlow
 - Learn mechanics of RNNs, LSTM, CNNs
 - Continue RHW physics
 
-References for quadrotor SLAM:
+References for quadrotor SLAM - CNNs for 2D images to depth mapping:
 
 (1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/ \
 (2): https://github.com/mrharicot/monodepth/
