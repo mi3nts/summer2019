@@ -31,7 +31,7 @@ void loop()
   {
     int r,g,b,c;
     int lux, cct;
-    sensor.getRGBCRaw(&r, &g, &b, &c);
+    sensor.getRGBCRaw(&r, &g, &b, &c); // Pass pointers as arguments since we want to overwrite those values
     lux = sensor.getLux(r, g, b, c);
     cct = sensor.getCCT(r, g, b, c);
 
