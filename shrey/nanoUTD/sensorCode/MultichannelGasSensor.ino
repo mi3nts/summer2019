@@ -17,8 +17,8 @@ void setup()
 
 void loop()
 {
-    char gasses[8] = ["NH3", "CO", "NO2", "C3H8", "C4H10", "CH4", "H2", "C2H5OH"];
-    float concentrations[8] = [gas.measure_NH3, gas.measure_CO, gas.measure_NO2, gas.measure_C3H8, gas.measure_C4H10, gas.measure_CH4, gas.measure_H2, gas.measure_C2H5OH];
+    char gasses[8] = {'NH3', 'CO', 'NO2', 'C3H8', 'C4H10', 'CH4', 'H2', 'C2H5OH'};
+    float concentrations[8] = {1, 2, 3, 4, 5, 6, 7, 8};
     
     for (int i = 0; i < 8; i++) {
         Serial.print("The concentration of ");
