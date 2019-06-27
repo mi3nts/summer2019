@@ -130,15 +130,15 @@ These consisted of the following:
 
 #### 4.1: BME280 - Temperature, Pressure, Light, Humidity
 
-Following is the code for it to print everything with a update delay of 1 second
+Following is the code for Nano to print everything BME280 can sense with a update delay of 1 second
 
 - Include libraries
-- Initialize instance of BME280 object
-- Void Setup
+- Initialize sensor as instance of BME280 object
+- Void setup
 - - Initialize Wire
 - - Initialize Serial with baud rate 9600
 - - If sensor fails to initialize then print error
-- Void Loop
+- Void loop
 - - Print all information acquired by sensor to Serial Monitor
 - - Remember that altitude is calculated as a function of pressure
 
@@ -170,16 +170,28 @@ void loop() {
   Serial.print("% \n --- \n");
   delay(1000);
 }
-
-
-- Worked on the Light, Gesture, Proximity, Color Sensor
-- Here is code for proximity detection. It prints when a proximity is detected or removed. When status of proximity changes, the builtin LED blinks.
-
-
-
-
 ~~~~
 
+#### 4.2: TMG3993 - Light, Gesture, Proximity, RGBC
+
+Following is the code for proximity detection from the TMG3993. It prints when proximity is detected or removed and LED_BUILTIN flashes when status of proximity changes.
+
+- Include libraries
+- Initialize sensor as instance of TMG3993 object
+- Initialize status of proximity as 0 (removed)
+- Void setup
+- - Initialize Serial with baud rate 9600 and print sensor info
+- - Initialize Wire
+- - If sensor fails to initialize then print error
+- - Setup sensor for proximity detection
+- Void loop
+- - Run following code only if sensor status is acquired and is valid (working properly)
+- - - Get proximity of object to sensor
+- - - If proximity is above threshold and status of proximity is 0 (removed) then print detection to Serial and set new status of proximity as 1 (detected)
+- - - If proximity is below threshold and status of proximity is 1 (detected) then print detection to Serial and set new status of proximity as 0 (removed)
+- - Delay 1 millisecond for stability
+
+~~~~
 #include <Wire.h>
 
 #include "Seeed_TMG3993.h"
@@ -209,15 +221,13 @@ void loop()
     int proximity = sensor.getProximityRaw();
 
     if (proximity < 50 && proximity_status == 0) {
-      Serial.print("Proximity Detected");
+      Serial.println("Proximity Detected");
       proximity_status = 1;
-      pinMode(LED_BUILTIN, HIGH);
     }
 
     if (proximity > 50 && proximity_status == 1) {
-      Serial.print("Proximity Removed");
+      Serial.println("Proximity Removed");
       proximity_status = 0;
-      pinMode(LED_BUILTIN, LOW);
     }
   }
   delay(1);
@@ -225,8 +235,22 @@ void loop()
 
 ~~~~
 
-- Also worked on programming for RGBC and lux which was detected by the same sensor. (C stands for clear in RGBC).
-- Here is the code:
+Following is the code for reading RGBC data (C stands for clear) for same sensor (TMG3993)
+
+- Include libraries
+- Initialize sensor as instance of TMG3993 object
+- Void setup
+- - Initialize Serial with baud rate 9600 and print sensor info
+- - Initialzie Wire
+- - If sensor fails to initialize then print error
+- - Set up sensor for sensing RGBC
+- Void loop
+- - Run following code only if sensor status is acquired and is valid (working properly)
+- - - Initialize r, g, b, c, lux, cct
+- - - Get RGBC data by passing pointers of r, g, b, c to getRGBCRaw function so that it may overwrite those values
+- - - Pass r, g, b, c to getLux and getCCt functions to get illuminance in luxes and CCT (Correlated Color Temperature) in Kelvin
+- - - Print all this info to Serial
+- - Delay 1 second for stability and readability
 
 ~~~~
 #include <Wire.h>
@@ -282,9 +306,8 @@ void loop()
 }
 ~~~~
 
+#### SCD30 - CO2 Concentration, Temperature, Humidity
 
-~~~~
-- Next was SCD30 CO2, Temperature and Humidity Sensor
 - Here is code to detect all with measurement interval 2 seconds
 
 ~~~~
