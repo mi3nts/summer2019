@@ -468,7 +468,7 @@ void loop() {
   delay(1000);
 }
 ~~~~
-
+ 
 - Receiving baud rate had to be altered from 9600 to 115200 however due to unknown reasons, even when Serial.begin was run with an argument of 9600. It could be a bug in the Nano or maybe it is just how the SI114X sensor transmitts information.
 
 All code can be found under NanoUTD/sensorCode.
