@@ -143,6 +143,10 @@ Following is the code for Nano to print everything BME280 can sense with a updat
 - - Remember that altitude is calculated as a function of pressure
 
 ~~~~
+/*
+Written by Shrey Joshi
+*/
+
 #include <Wire.h>
 #include "Seeed_BME280.h"
 
@@ -192,8 +196,10 @@ Following is the code for proximity detection from the TMG3993. It prints when p
 - - Delay 1 millisecond for stability
 
 ~~~~
+/*
+Written by Shrey Joshi
+*/
 #include <Wire.h>
-
 #include "Seeed_TMG3993.h"
 
 TMG3993 sensor;
@@ -253,8 +259,11 @@ Following is the code for reading RGBC data (C stands for clear) for same sensor
 - - Delay 1 second for stability and readability
 
 ~~~~
-#include <Wire.h>
+/*
+Adapted From example code
+*/
 
+#include <Wire.h>
 #include "Seeed_TMG3993.h"
 
 TMG3993 sensor;
@@ -268,7 +277,7 @@ void setup()
 
   if (sensor.initialize() == false)
   {
-    Serial.println("Device not found. Check wiring.");
+    Serial.println("Check wiring");
     while (1);
   }
   sensor.setADCIntegrationTime(0xdb); // the integration time: 103ms
@@ -306,11 +315,24 @@ void loop()
 }
 ~~~~
 
-#### SCD30 - CO2 Concentration, Temperature, Humidity
+#### 4.3: SCD30 - CO2 Concentration, Temperature, Humidity
 
-- Here is code to detect all with measurement interval 2 seconds
+Following is code to detect all information from SCD30 sensor with measurement interval of 2 seconds.
+
+- Include libraries
+- Initialize sensor as instance of SCD30 object
+- Void setup
+- - Initialize Wire
+- - Initialize Serial with baud rate 9600 and print sensor information
+- - Initialize sensor and set measurement interval 2 seconds
+- Void loop
+- - Print sensor info to Serial Monitor
 
 ~~~~
+/*
+Written by Shrey Joshi
+*/
+
 #include <Wire.h>
 #include "SparkFun_SCD30_Arduino_Library.h"
 
@@ -346,9 +368,24 @@ setAmbientPressure(pressure in millibars)
 ~~~~
 to set default altitude and pressure respectively.
 
-- Next was using the Multichannel Gas Sensor. Here is the code for detecting all gasses detectable by the module.
+#### 4.4: Multichannel Gas Sensor - Concentrations of NH<sub>3</sub>, CO, NO<sub>2</sub>, C<sub>3</sub>H<sub>8</sub>, C<sub>4</sub>H<sub>10</sub>, CH<sub>4</sub>, H<sub>2</sub>, C<sub>2</sub>H<sub>5</sub>OH
 
+Following is the code for printing all information from this sensor to Serial Monitor. Due to time constraints, preheating and calibration were omitted.
+
+- Include libraries
+- Void setup
+- - Initialize Serial with baud rate 9600
+- - Initialize sensor communication and power on
+- Void loop
+- - For each gass measurable by the sensor, find its concentration as sensed
+- - If concentration < 0 ppm then print error
+- - Otherwise print gas and corresponding concentration to Serial Monitor
+- - Delay 1 second for stability and readability
 ~~~~
+/*
+Adapted from example code
+*/
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "MutichannelGasSensor.h"
@@ -417,9 +454,24 @@ void loop()
 }
 ~~~~
 
-- Lastly there was the sunlight sensor (Grove Sunlight Sensor) which senses Visible, IR, and UV light.
+#### 4.4: Grove Sunlight Sensor: Visible, IR, UV Light
+
+Following is the code for displaying visible, IR, and UV light brightness. Visible and IR measured in lumens while UV measured by UV index.
+
+- Include libraries
+- Initialize SI1145 as instance of SI114X object
+- Setup
+- - Initialize Serial with baud rate 9600 and print when sensor is initialized
+- Loop
+- - Compute and print readings for visible, IR, UV
+- - Note that UV index is UV in lumens divided by 100
+- - Delay 1 second for stability and readability
 
 ~~~~
+/*
+Adapted from example code
+*/
+
 #include <Arduino.h>
 #include <Wire.h>
 #include "SI114X.h"
@@ -440,11 +492,13 @@ void setup() {
 void loop() {
   Serial.print("---\n");
   Serial.println("Vis: "); Serial.println(SI1145.ReadVisible());
-  Serial.println("IR: "); Serial.println(SI1145.ReadIR());
+  Serial.println("IR: ");
+  Serial.println(SI1145.ReadIR());
   //the real UV value must be div 100 from the reg value , datasheet for more information.
-  Serial.println("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
+  Serial.println("UV: ");
+  Serial.println(float(SI1145.ReadUV())/100);
   delay(1000);
 }
 ~~~~
 
-- Baudrate had to be altered from 9600 to 115200 however due to unknown reasons, even when Serial.begin was run with an argument of 9600. It could be a bug in the Nano or maybe it is just how the sensor transmitts information.
+- Receiving baud rate had to be altered from 9600 to 115200 however due to unknown reasons, even when Serial.begin was run with an argument of 9600. It could be a bug in the Nano or maybe it is just how the SI114X sensor transmitts information.
