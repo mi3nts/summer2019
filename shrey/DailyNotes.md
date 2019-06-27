@@ -514,5 +514,5 @@ void loop() {
 
 References for quadrotor SLAM:
 
-(1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/
+(1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/ \
 (2): https://github.com/mrharicot/monodepth/
