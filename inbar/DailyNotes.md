@@ -504,4 +504,8 @@ The follwoing procedures may have some errors or omissions
 #### 6.3 Finish up
  - If wire collects data correctly, disconnect from the arduino and sensor, cover exposed wire with heat shrink, and heat. Then put aside.
  
+### Task 7: Connect wires
+ - Get 3 four-pin cable and one of the six-wire cables from task 6
+ - Wrap all the red wires among these together and wrap with a copper solid wire around them. Do the same for the black wires.
+ - Wrap all the yellow wires from the 4-pin cable together (DO NOT use the wire from the six-wire cable) and wrap with a solid wire. Do the same for the white wires.
  
