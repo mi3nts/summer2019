@@ -462,10 +462,10 @@ void loop()
 ````
  - Watch the output and check for correctness
 
-### June 26, 2019
-#### Task 5: Building Sensor
+## June 26, 2019 & July 2, 2019
+### Task 5: Building Sensor
 The follwoing procedures may have some errors or omissions
-##### 5.1 Splitting wires
+#### 5.1 Splitting wires
  - Take a four-wire cable and cut in the middle, and separate the four wires
  - Expose the ends of each wire
  - Hook the end of each wire and tie to combine with two more wires
@@ -486,3 +486,22 @@ The follwoing procedures may have some errors or omissions
  - Connect the four-wire cable to the main Seeduino
  - Connect one end of a two-wire cable to port of the Seeduino, and solder the other end to the load wire holes of the Sunny Buddy
  - Cover the Seeduino with a base shield
+
+## July 8, 2019
+### Task 6: Checking wire connections to sensors
+#### 6.1 Connect wires to arduino
+ - Connect the red wire to 5V
+ - Black goes to GND
+ - White tp D10
+ - Blue to D11
+ - Green to D12
+ - Yellow wire to D13
+ - Connect the wires to the sensor and connect the arduino to the computer with a USB cable
+#### 6.2 Collect data
+ - Type th efollowing on the terminal: 
+ ```` screen /dev/cu.usbserial-AH06AI47 ````
+ - Check that the device provides the correct data. It should eventually print ```#mintsO!OPCN2>1:``` followed by some number, followed by a lot more data.
+#### 6.3 Finish up
+ - If wire collects data correctly, disconnect from the arduino and sensor, cover exposed wire with heat shrink, and heat. Then put aside.
+ 
+ 
