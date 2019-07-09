@@ -498,7 +498,7 @@ The follwoing procedures may have some errors or omissions
  - Yellow wire to D13
  - Connect the wires to the sensor and connect the arduino to the computer with a USB cable
 #### 6.2 Collect data
- - Type th efollowing on the terminal: 
+ - Type the following on the terminal: 
  ```` screen /dev/cu.usbserial-AH06AI47 ````
  - Check that the device provides the correct data. It should eventually print ```#mintsO!OPCN2>1:``` followed by some number, followed by a lot more data.
 #### 6.3 Finish up
@@ -509,8 +509,73 @@ The follwoing procedures may have some errors or omissions
  - Wrap all the red wires among these together and wrap with a copper solid wire around them. Do the same for the black wires.
  - Wrap all the yellow wires from the 4-pin cable together (DO NOT use the wire from the six-wire cable) and wrap with a solid wire. Do the same for the white wires.
  
-## July 9, 2019
+## July 9-10, 2019
 ### Task 8: Assemble sensors
 Mount a BME2800 sensor, a dust sensor, and a multichannel gas sensor, as well as two arduinos, on the sensor.
 
-### Task 9: Read sensor serial input and write to CSV
+### Task 9: Write serial inputs to CSV
+Full python program can be found in this directory, named "SerialReader.python"
+#### 9.1 Get input
+ - Type ```` screen /dev/cu.usbserial-AH06AI47 ```` to get serial inputs and copy-paste some of the data to a text file.
+#### 9.2 Process data
+ - Process serial data, splitting the string at ````#mintsO!````, in order to make it easier to transfer to a python dictionary.
+````
+#Get data
+file = open(r"Data.txt", "r") #Read file
+contents = file.read()
+#Process data
+contents.replace("~", "") #Get rid of the ~ in the string
+contents = contents.split("#mintsO!B") #Split the file into a list of strings for each iteration of data
+del contents[0] # Get rid of empty first string
+````
+#### 9.3 Make dictionaries
+ - Make one dictionary for each sensor and set to 0
+ ````
+ #Create a dictionary for each sensor's variables
+BME280 = {"var1": 0, "var2": 0, "var3": 0, "var4": 0, "time": 0}
+MGS001 = {"var1": 0, "var2": 0, "var3": 0, "var4": 0, "var5": 0, "var6": 0, "var7": 0, "var8": 0, "time": 0}
+OPCN2 = {"var1": 0, "var2": 0, "var3": 0, "var4": 0, "var5": 0, "var6": 0, "var7": 0, "var8": 0, "var9": 0, "time": 0,
+         "var10": 0, "var11": 0, "var12": 0, "var13": 0, "var14": 0, "var15": 0, "var16": 0, "var17": 0,
+         "var18": 0, "var19": 0, "var20": 0, "var21": 0, "var22": 0, "var23": 0, "var24": 0, "var25": 0,
+         "var26": 0, "var27": 0, "var28": 0, "time": 0}
+SCD30 = {"var1": 0, "var2": 0, "var3": 0, "time": 0}
+````
+#### 9.4 Create a function to fill data into the dictionary
+````
+def fillDict(num, dict, data):
+  curDat = [data[num].split(":")[0].split(">")[1]] +  data[num].split(":")[1:]
+  for key, dat in zip(dict.keys(), curDat):
+      dict[key] = dat
+  dict["time"] = datetime.now()
+````
+#### 9.5 Create a function to make a csv file from each dictionary
+````
+def makeCSV(dict, fileName, makeHeaders):
+    keys = list(dict.keys())
+    with open(fileName, "a") as csvFile:
+        writer = csv.DictWriter(csvFile, fieldnames=keys);
+        if(makeHeaders):
+            writer.writeheader()
+            print()
+        writer.writerow(dict)
+    csvFile.close()
+````
+#### 9.6 Loop over each iteration of data and update csv files
+````
+for data in contents:
+    #Split vars of into sensors
+    data = data.split("~#mintsO!")
+
+    #Put variables of each sensor into the list
+    fillDict(0, BME280, data)
+    fillDict(1, MGS001, data)
+    fillDict(2, OPCN2, data)
+    fillDict(3, SCD30, data)
+
+    #Make the csv file for each sensor
+    makeCSV(BME280, "BME280.csv", not(os.path.isfile("BME280.csv")))
+    makeCSV(MGS001, "MGS001.csv", not(os.path.isfile("MGS001.csv")))
+    makeCSV(OPCN2, "OPCN2.csv", not(os.path.isfile("OPCN2.csv")))
+    makeCSV(SCD30, "SCD30.csv", not(os.path.isfile("SCD30.csv")))
+````
+
