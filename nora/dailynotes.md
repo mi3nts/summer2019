@@ -1,17 +1,17 @@
 # Daily Notes
 ## 06/24/2019 Monday
 ### 1.1 Learned how to assemble the Shinyei with soldering and wiring
-1.1.1 The frayed wires are a pain </br>
-1.1.2 Adam discovered that by seprating the wires attached to the load so that they go to both of the sensors simultaneously (as 
-oppose to being wired in parallel), accident rate (breaking solder) was cut down in addition to manufacturing time
-1.2 Watched one Shinyei be put together (by Adam)
-1.3 Helped Adam manufacture 3 Shinyeis (I did more of the soldering while he did more of the wiring)
+#### 1.1.1 The frayed wires are a pain </br>
+#### 1.1.2 Adam discovered that by seprating the wires attached to the load so that they go to both of the sensors simultaneously (as 
+oppose to being wired in parallel), accident rate (breaking solder) was cut down in addition to manufacturing time </br>
+### 1.2 Watched one Shinyei be put together (by Adam) </br>
+### 1.3 Helped Adam manufacture 3 Shinyeis (I did more of the soldering while he did more of the wiring) </br>
 ## 06/25/2019 Tuesday
-1.1 Created Arduino accaount
-1.1.1 Ardiono Username: norad42; email: nora.desmond@aol.com; password: EdD785::
-1.1.2 Github Username: norad02; email: norad.desmond@aol.com; password: EdD785::
-2.1 Ran Lakitha's second Github exercise
-2.1.1 
+### 1.1 Created Arduino accaount </br>
+#### 1.1.1 Ardiono Username: norad42; email: nora.desmond@aol.com; password: EdD785:: </br>
+#### 1.1.2 Github Username: norad02; email: norad.desmond@aol.com; password: EdD785:: </br>
+### 2.1 Ran Lakitha's second Github exercise </br>
+#### 2.1.1 
 ```
 // the setup routine runs once when you press reset:
 void setup() {
@@ -39,9 +39,13 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);                       // wait for a second
 }
-4.1 Downloaded the Arduino app on my computer
-5.1 Download Atom and the PlatformIO
-5.1.1 Code for the CO2 & Temperature & Humidity Sensor (SCD30)
+```
+
+### 4.1 Downloaded the Arduino app on my computer </br>
+### 5.1 Download Atom and the PlatformIO </br>
+#### 5.1.1 Code for the CO2 & Temperature & Humidity Sensor (SCD30) </br>
+
+```
 #include <Arduino.h>
 #include <Wire.h>
 #include "SparkFun_SCD30_Arduino_Library.h"
@@ -72,7 +76,10 @@ void loop()
     Serial.println("No data");
  delay(1000);
 }
-5.1.2 Code for the Barometer Sensor (BME280)
+```
+
+#### 5.1.2 Code for the Barometer Sensor (BME280) </br>
+```
 #include <Arduino.h>
 
 #include "Seeed_BME280.h"
@@ -114,7 +121,9 @@ void loop()
 
   delay(1000);
 }
-5.1.3 Code for the Sunlight Sensor
+```
+####5.1.3 Code for the Sunlight Sensor </br>
+```
 #include <Wire.h>
 
 #include "Arduino.h"
@@ -143,6 +152,6 @@ void loop() {
   delay(1000);
 }
 ```
-5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO
-5.1.4.1 Imbar says that Lakitha will show us later
-6.1 The Github that I downloaded onto my Windows refused to run
+####5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO
+#####5.1.4.1 Imbar says that Lakitha will show us later
+###6.1 The Github that I downloaded onto my Windows refused to run
