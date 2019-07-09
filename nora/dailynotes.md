@@ -152,6 +152,18 @@ void loop() {
   delay(1000);
 }
 ```
-####5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO
-#####5.1.4.1 Imbar says that Lakitha will show us later
-###6.1 The Github that I downloaded onto my Windows refused to run
+####5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO </br>
+#####5.1.4.1 Imbar says that Lakitha will show us later </br>
+###6.1 The Github that I downloaded onto my Windows refused to run </br>
+## 07/09/2019 Tuesday </br>
+### 1.1 I am learning Python </br>
+```
+a = 5
+b = 6
+print(9 * a + b)
+```
+#### This prints 51
+##### This is how you run code: 
+```
+C:\Users\norad\Desktop\Python-lesson>python lesson1.py
+```
