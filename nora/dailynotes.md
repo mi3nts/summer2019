@@ -1,7 +1,7 @@
 # Daily Notes
 ## 06/24/2019 Monday
-1.1 Learned how to assemble the Shinyei with soldering and wiring
-1.1.1 The frayed wires are a pain
+### 1.1 Learned how to assemble the Shinyei with soldering and wiring
+1.1.1 The frayed wires are a pain </br>
 1.1.2 Adam discovered that by seprating the wires attached to the load so that they go to both of the sensors simultaneously (as 
 oppose to being wired in parallel), accident rate (breaking solder) was cut down in addition to manufacturing time
 1.2 Watched one Shinyei be put together (by Adam)
