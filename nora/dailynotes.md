@@ -12,6 +12,7 @@ oppose to being wired in parallel), accident rate (breaking solder) was cut down
 1.1.2 Github Username: norad02; email: norad.desmond@aol.com; password: EdD785::
 2.1 Ran Lakitha's second Github exercise
 2.1.1 
+```
 // the setup routine runs once when you press reset:
 void setup() {
   // initialize serial communication at 9600 bits per second:
@@ -141,6 +142,7 @@ void loop() {
   Serial.print("UV: ");  Serial.println((float)SI1145.ReadUV()/100);
   delay(1000);
 }
+```
 5.1.4 The library for the Light & Gesture & Color & Proximity Sensor is nowhere to be found on Atom/PlatformIO
 5.1.4.1 Imbar says that Lakitha will show us later
 6.1 The Github that I downloaded onto my Windows refused to run
