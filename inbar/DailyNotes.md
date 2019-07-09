@@ -509,3 +509,8 @@ The follwoing procedures may have some errors or omissions
  - Wrap all the red wires among these together and wrap with a copper solid wire around them. Do the same for the black wires.
  - Wrap all the yellow wires from the 4-pin cable together (DO NOT use the wire from the six-wire cable) and wrap with a solid wire. Do the same for the white wires.
  
+## July 9, 2019
+### Task 8: Assemble sensors
+Mount a BME2800 sensor, a dust sensor, and a multichannel gas sensor, as well as two arduinos, on the sensor.
+
+### Task 9: Read sensor serial input and write to CSV
