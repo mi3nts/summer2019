@@ -9,13 +9,13 @@ def fillDict(num, dict, data):
       dict[key] = dat
   dict["time"] = datetime.now()
 
-def makeCSV(dict, fileName, makeHeaders):
+def makeCSV(dict, fileName):
+    makeHeader = not(os.path.isfile(fileName))
     keys = list(dict.keys())
     with open(fileName, "a") as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=keys);
-        if(makeHeaders):
+        if(makeHeader):
             writer.writeheader()
-            print()
         writer.writerow(dict)
     csvFile.close()
 
@@ -48,7 +48,7 @@ for data in contents:
     fillDict(3, SCD30, data)
 
     #Make the csv file for each sensor
-    makeCSV(BME280, "BME280.csv", not(os.path.isfile("BME280.csv")))
-    makeCSV(MGS001, "MGS001.csv", not(os.path.isfile("MGS001.csv")))
-    makeCSV(OPCN2, "OPCN2.csv", not(os.path.isfile("OPCN2.csv")))
-    makeCSV(SCD30, "SCD30.csv", not(os.path.isfile("SCD30.csv")))
+    makeCSV(BME280, "BME280.csv")
+    makeCSV(MGS001, "MGS001.csv")
+    makeCSV(OPCN2, "OPCN2.csv")
+    makeCSV(SCD30, "SCD30.csv")
