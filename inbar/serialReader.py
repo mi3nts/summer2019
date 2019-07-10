@@ -2,6 +2,10 @@ import serial
 import csv
 import os
 from datetime import datetime
+import serialDefinitions as fl
+import json
+
+now = datetime.utcnow()
 
 def fillDict(dict, data):
   curDat = [0] +  data.split(":")
@@ -9,10 +13,19 @@ def fillDict(dict, data):
       dict[key] = dat
   dict["utc-time"] = datetime.utcnow()
 
-def makeCSV(dict, fileName):
-    makeHeader = not(os.path.isfile(fileName))
+def makeCSV(dict, name):
+    #Find/make directory
+    dir = fl.getDirPath(now)
+    if(not(os.path.exists(dir))):
+        os.makedirs(dir)
+    #Find/make file path
+    filePath = fl.getFilePath(now, dir, name)
+    makeHeader = not(os.path.isfile(filePath))
+
+    #Get keys
     keys = list(dict.keys())
-    with open(fileName, "a") as csvFile:
+    #Input data to file
+    with open(filePath, "a") as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=keys);
         if(makeHeader):
             writer.writeheader()
@@ -22,20 +35,29 @@ def makeCSV(dict, fileName):
 def processData(data):
     print(data)
     data = data.split(">")
-    if(data[0] == "#mintsO!BME280"):
-        fillDict(BME280, data[1])
-        makeCSV(BME280, "BME280.csv")
-    if(data[0] == "#mintsO!MGS001"):
-        fillDict(MGS001, data[1])
-        makeCSV(MGS001, "MGS001.csv")
-    if(data[0] == "#mintsO!SCD30"):
-        fillDict(SCD30, data[1])
-        makeCSV(SCD30, "SCD30.csv")
-    if(data[0] == "#mintsO!OPCN2"):
-        fillDict(OPCN2, data[1])
-        makeCSV(OPCN2, "OPCN2.csv")
+    try:
+        if(data[0] == "#mintsO!BME280"):
+            fillDict(BME280, data[1])
+            jsonMaker("BME280.json", BME280)
+            makeCSV(BME280, "BME280")
+        elif(data[0] == "#mintsO!MGS001"):
+            fillDict(MGS001, data[1])
+            jsonMaker("MGS001.json", MGS001)
+            makeCSV(MGS001, "MGS001")
+        elif(data[0] == "#mintsO!SCD30"):
+            fillDict(SCD30, data[1])
+            jsonMaker("SCD30.json", SCD30)
+            makeCSV(SCD30, "SCD30")
+        elif(data[0] == "#mintsO!OPCN2"):
+            fillDict(OPCN2, data[1])
+            jsonMaker("OPCN2.json", OPCN2)
+            makeCSV(OPCN2, "OPCN2")
+    except:
+        print("Data cannot be processed")
 
-
+def jsonMaker(fileName, dict):
+    with open(fileName, 'w') as f:
+        json.dump(dict, f, default=str)
 
 
 #Create a dictionary for each sensor's variables
@@ -48,23 +70,32 @@ OPCN2 = {"utc-time": 0, "valid": 0, "binCount0": 0, "binCount1": 0, "binCount2":
 SCD30 = {"utc-time": 0, "co2": 0, "temperature": 0, "humidity": 0}
 
 
+
 #Set up serial port
 ser = serial.Serial("/dev/cu.usbserial-A90837L7", 9600, timeout=5)
 
-#Read Serial setup
-i = 0
-while i < 182:
-    print(i, ser.readline())
-    i = i + 1
-
-print("SET UP COMPLETE\nREADING DATA")
-
 #Read data
 curData = ""
+reading = False
 while True:
-    char = (ser.read(1)).decode('utf-8')
-    if(char == '~'):
-        processData(curData)
-        curData = ""
-    else:
-        curData = curData + str(char)
+    try:
+        char = (ser.read(1)).decode('utf-8')
+        if(char == '#'):
+            reading = True
+            curData = str(char)
+        elif(char == '~'):
+            processData(curData)
+            curData = ""
+            reading = False
+        elif(reading):
+            curData = curData + str(char)
+        else:
+            print(str(char), end = "")
+    except:
+        print("Data not received")
+
+
+
+
+## What if theres more than one sensor (usb port)? How to check which sensors are connected? How do you know which sensor is which?
+## How to be able to do this if sensors change or USB port name changes
