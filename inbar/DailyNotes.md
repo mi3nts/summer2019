@@ -632,4 +632,28 @@ def processData(data):
  - Change the `"time"` key in the dictionaries to `"utc-time"`
  - change the line in the ``fillDict`` function to read:
  ```  dict["utc-time"] = datetime.utcnow()```
- 
+#### 10.6 Implement try-ctach
+ - Add a try catch in the loop where it reads by character, in case it cannot find a '~' or other problems.
+ - Add a try catch in loop where it processes data as well, in case it gets stuck while processing.
+#### 10.7 Move definitions to separate file
+ - Create a new function called `getDirPath` in a separate definitions file:
+ ````
+ def getDirPath(time):
+      dir = "MintsData/raw/" + str(macAddress) + "/" + str(time.year) + "/" + ('%02d' % time.month) + "/" + ('%02d' % time.day)
+      return dir
+````
+ - Create a new functions called `getFilePath` in the definitions file:
+ ````
+ def getFilePath(time, dir, name):
+    filePath = dir + "/" + "MINTS_" + macAddress + "_" + name + "_" + str(time.year) + "_" + ('%02d' % time.month) + "_" + ('%02d' % time.day) + ".csv"
+    return filePath
+````
+ - Now instead of creating the file name and directory in the makeCSV function in serialReader, call these functions. This will make it easier to change file/directory names if necessary
+#### 10.8 Put most recent measurements on a json file
+ - Create a function called `jsonMaker` as follows:
+ ````
+ def jsonMaker(fileName, dict):
+    with open(fileName, 'w') as f:
+        json.dump(dict, f, default=str)
+````
+ - Call this function to update the json file each time after you update the dictionary, inside the `processData` function.
