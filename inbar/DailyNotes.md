@@ -509,11 +509,11 @@ The follwoing procedures may have some errors or omissions
  - Wrap all the red wires among these together and wrap with a copper solid wire around them. Do the same for the black wires.
  - Wrap all the yellow wires from the 4-pin cable together (DO NOT use the wire from the six-wire cable) and wrap with a solid wire. Do the same for the white wires.
  
-## July 9-10, 2019
+## July 9, 2019
 ### Task 8: Assemble sensors
 Mount a BME2800 sensor, a dust sensor, and a multichannel gas sensor, as well as two arduinos, on the sensor.
 
-### Task 9: Write serial inputs to CSV
+### Task 9: Write text input to CSV
 Full python program can be found in this directory, named "SerialReader.python"
 #### 9.1 Get input
  - Type ```` screen /dev/cu.usbserial-AH06AI47 ```` to get serial inputs and copy-paste some of the data to a text file.
@@ -550,11 +550,12 @@ def fillDict(num, dict, data):
 ````
 #### 9.5 Create a function to make a csv file from each dictionary
 ````
-def makeCSV(dict, fileName, makeHeaders):
+def makeCSV(dict, fileName):
+    makeHeader = not(os.path.isfile(fileName))
     keys = list(dict.keys())
     with open(fileName, "a") as csvFile:
         writer = csv.DictWriter(csvFile, fieldnames=keys);
-        if(makeHeaders):
+        if(makeHeader):
             writer.writeheader()
             print()
         writer.writerow(dict)
@@ -579,3 +580,56 @@ for data in contents:
     makeCSV(SCD30, "SCD30.csv", not(os.path.isfile("SCD30.csv")))
 ````
 
+## July 10, 2019
+### Task 10: Read serial input and write to CSV
+Full python program can be found in this directory, named "SerialReader.python", including changes from July 9th's program.
+#### 10.1 Set up serial port
+ - Connect USB from device to computer
+ - Run ````screen /dev/cu.usbserial-AH06AI47```` to make sure device is properly connected.
+ - Write ````ser = serial.Serial("/dev/cu.usbserial-A90837L7", 9600, timeout=5)```` in your python program to set up the serial.
+#### 10.2 Read set-up data
+ - This device prints 182 lines before it sets up. To run through them, add the following to your python code:
+````
+i = 0
+while i < 182:
+    print(i, (ser.readline()).decode('utf-8'))
+    i = i + 1
+
+print("SET UP COMPLETE\nREADING DATA")
+````
+#### 10.3 Read data
+ - We will have to read data each time until '~' is reached. Write the following:
+````
+curData = ""
+while True:
+    char = (ser.read(1)).decode('utf-8')
+    if(char == '~'):
+        processData(curData)
+        curData = ""
+    else:
+        curData = curData + str(char)
+````
+#### 10.4 Process data
+- Write a function that processes the data and performs the commands to write it to the csv using functions from earlier:
+````
+def processData(data):
+    print(data)
+    data = data.split(">")
+    if(data[0] == "#mintsO!BME280"):
+        fillDict(BME280, data[1])
+        makeCSV(BME280, "BME280.csv")
+    if(data[0] == "#mintsO!MGS001"):
+        fillDict(MGS001, data[1])
+        makeCSV(MGS001, "MGS001.csv")
+    if(data[0] == "#mintsO!SCD30"):
+        fillDict(SCD30, data[1])
+        makeCSV(SCD30, "SCD30.csv")
+    if(data[0] == "#mintsO!OPCN2"):
+        fillDict(OPCN2, data[1])
+        makeCSV(OPCN2, "OPCN2.csv")
+````
+#### 10.5 Change time to utc-time
+ - Change the `"time"` key in the dictionaries to `"utc-time"`
+ - change the line in the ``fillDict`` function to read:
+ ```  dict["utc-time"] = datetime.utcnow()```
+ 
