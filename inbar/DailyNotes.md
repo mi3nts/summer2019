@@ -628,3 +628,8 @@ def processData(data):
         fillDict(OPCN2, data[1])
         makeCSV(OPCN2, "OPCN2.csv")
 ````
+#### 10.5 Change time to utc-time
+ - Change the `"time"` key in the dictionaries to `"utc-time"`
+ - change the line in the ``fillDict`` function to read:
+ ```  dict["utc-time"] = datetime.utcnow()```
+ 
