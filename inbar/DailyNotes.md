@@ -592,7 +592,7 @@ Full python program can be found in this directory, named "SerialReader.python",
 ````
 i = 0
 while i < 182:
-    print(i, ser.readline())
+    print(i, (ser.readline()).decode('utf-8'))
     i = i + 1
 
 print("SET UP COMPLETE\nREADING DATA")
