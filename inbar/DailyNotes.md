@@ -657,3 +657,26 @@ def processData(data):
         json.dump(dict, f, default=str)
 ````
  - Call this function to update the json file each time after you update the dictionary, inside the `processData` function.
+#### Task 10 summary:
+ - Each arduino is connected to multiple sensors; every "cycle", each sensor prints out its own data. Each arduino works (and runs) independnetly.
+ - When the sensor prints out data, it starts with ````#mintsO!````, and then prints the sensor name, followed by `>` and then a series of numbers, separated by `:`, which correspond to the data the sensor read. Each line ends in `~`
+ - <b>Reading stage:</b> The program reads each character that the arduino sends and adds it into a string until `~` is reached, at which point the string is completed and sent to "processing"
+ - <b>Processing stage:</b>The program separates each sensor's readout. Then, it puts the data from each sensor into a dictionary, where each value is put into its corresponding variable in order
+ - <b>Recording stage:</b>After processing the sensor's reading, the program writes the data from the dictionary into a CSV file.
+ - The program then cycles back to the reading stage to read the next sensor's input
+
+## July 15-17
+### Task 11: Assemble sensors
+#### 11.1 Connect parts to the cylinder portion
+ - Connect two arduinos to each board
+ - Connect three sensors (BME280, SCD30, OPCN2, MGS001) to one arduino
+ - Connect the fourth sensor (PPD4N2SDuo) to the other arduino
+ - Test the device on the code from task 10
+ - Put the wind shields on the device
+#### 11.2 Connect to sensor box
+ - Connect the cylinder to the board of the sensor box
+ - Put the cables through the box and screw lid
+#### 11.3 Building interior sensors
+ - Connect a GPS to each board with a CPU with fan and camera
+ - Put an arduino base on each board
+ - Connect a USB to the CPU
