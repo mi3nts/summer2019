@@ -82,7 +82,7 @@ connected = []
 for element in li:
     connected.append(element.device)
 
-ser = serial.Serial(port=connected[1], baudrate=9600, timeout=5)
+ser = serial.Serial(port=connected[2], baudrate=9600, timeout=5)
 
 #Read data
 curData = ""
@@ -103,9 +103,3 @@ while True:
             print(str(char), end = "")
     except:
         print("Data not received")
-
-
-
-
-## What if theres more than one sensor (usb port)? How to check which sensors are connected? How do you know which sensor is which?
-## How to be able to do this if sensors change or USB port name changes
