@@ -657,6 +657,9 @@ def processData(data):
         json.dump(dict, f, default=str)
 ````
  - Call this function to update the json file each time after you update the dictionary, inside the `processData` function.
+#### 10.9 Connecting to multiple ports
+ - We must allow the computer to read data from multiple arsuinos simultaneously. In order to do this, we will need to run several programs at the same time. For reading from three arduinos, start by copy-pasting all of the code in the file you have created into two more files.
+ -
 #### Task 10 summary:
  - Each arduino is connected to multiple sensors; every "cycle", each sensor prints out its own data. Each arduino works (and runs) independnetly.
  - When the sensor prints out data, it starts with ````#mintsO!````, and then prints the sensor name, followed by `>` and then a series of numbers separated by `:`, which correspond to the data the sensor read. Each line ends in `~`
@@ -664,13 +667,15 @@ def processData(data):
  - <b>Processing stage:</b> The program separates each sensor's readout. Then, it puts the data from each sensor into a dictionary, where each value is put into its corresponding variable in order
  - <b>Recording stage:</b> After processing the sensor's reading, the program writes the data from the dictionary into a CSV file.
  - The program then cycles back to the reading stage to read the next sensor's input
+#### Task 10: Set-up
+
 
 ## July 15-17
 ### Task 11: Assemble sensors
 #### 11.1 Connect parts to the cylinder portion
  - Connect two arduinos to each board
  - Connect three sensors (BME280, SCD30, OPCN2, MGS001) to one arduino
- - Connect the fourth sensor (PPD4N2SDuo) to the other arduino
+ - Connect the fourth sensor (PPD42NSDuo) to the other arduino
  - Test the device on the code from task 10
  - Put the wind shields on the device
 #### 11.2 Connect to sensor box
@@ -680,3 +685,23 @@ def processData(data):
  - Connect a GPS to each board with a CPU with fan and camera
  - Put an arduino base on each board
  - Connect a USB to the CPU
+### Task 12: Set-up CV2
+#### 12.1 Install CV2
+ - Install the lastest version of cv2 <a href="https://opencv.org/releases/">here</a>
+ - Check that it is working correctly by typing
+ ````
+ import cv2
+ print(cv2.__version__)
+ ````
+#### 12.2 Open an image using cv2
+ - Type the following program:
+ ````
+ import numpy as np
+import cv2
+
+img = cv2.imread('image.jpg') #Change the address of this image to any image you are using
+cv2.imshow('image', img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+````
+ - The image should open when you run the program. To close it, type 0 in the image window.
