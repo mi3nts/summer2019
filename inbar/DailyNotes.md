@@ -766,3 +766,25 @@ One_D_Image = np.concatenate((One_D_Image_RGB, One_D_Image_HSV, One_D_Image_LAB)
 with open("colors.csv", "a") as csvFile:
     np.savetxt("colors.csv", One_D_Image, delimiter=",", header="Red, Green, Blue, Hue, Saturation, Color, Lightness, A*, B*", fmt='%3.f')
 ````
+
+## July 22, 2019
+### Task 13: Assemble and put small sensors in housing
+#### 13.1 Set the cable
+ - Take a big 8-wire cable
+ - Cut both ends to expose wires
+ - Cut down the white-orange and white-brown wires, to leave 6 wires on both ends.
+ - Put the wire through the box with all the arduinos and put the knob on to lock it in.
+#### Shield side
+ - Put the top of the housing through the wire
+ - Connect three I2C cables together, twisting together like colors
+ - Take a Shinyei cable (5-pin connector with three wires, red, black, yellow) and connect a black wire to both the spots the are missing wire
+ - Connect a resitor to the black wire on one end of the connector; connect the other end to the black wire at the other side of the resistor. Connect another wire to the resistor to extend. Solder together and cover with heat shrink.
+ - Twist the black wire with the resistor into the black wires from the I2C. Solder all of this into the brown wire in the cable
+ - Twist the red wire from the Shinyei into the red wires from the I2C. Solder all of this into the orange wire in the cable
+ - Connect all the white wires from the I2C that had been twisted together to the white-green wire in the cable. Solder and apply heat shrink.
+ - Connect all the yellow wires from the I2C that had been twisted together to the green wire in the cable. Solder and apply heat shrink.
+ - Connect the yellow wire from the Shinyei to the blue wire in the cable. Solder and put heat shrink.
+ - Connect the black wire left on the Shinyei to the white-blue wire in the cable
+ - Connect sensors (CO2, BME280, and multichannel gas) to all the 4-pin ocnnectors, and connect the Shinyei to the Shinyei cable.
+ - Put all of this through the housing and connect to the top of the housing.
+#### Box Side
