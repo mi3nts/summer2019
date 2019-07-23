@@ -788,3 +788,12 @@ with open("colors.csv", "a") as csvFile:
  - Connect sensors (CO2, BME280, and multichannel gas) to all the 4-pin ocnnectors, and connect the Shinyei to the Shinyei cable.
  - Put all of this through the housing and connect to the top of the housing.
 #### Box Side
+ - Get two 4-pin connector (I2C). For one of them, cut all wires but the yellow one; this will be the D7 connector, and the unaltered one will be the I2C.
+ - Get another 4-pin connector that only has 3 wires (black, red, yellow). This will be the D8 connector.
+ - Twist the red wires of the I2C and D8 together and solder to the orange wire of the 6-wire cable.
+ - Twist the black wires of the I2C and D8 together and solder to the brown wire of the 6-wire cable.
+ - Solder the yellow wire of the D8 to the blue wire of the 6-wire cable.
+ - Solder the white wire of the I2C to the white-green wire of the 6-wire cable.
+ - Solder the yellow wire of the I2c to the green wire of the 6-wire cable.
+ - Solder the yellow wire of the D7 to the blue-white wire of the 6-wire cable.
+ - Connect the D7, D8, and I2C to their respective spots on the Arduino shield in the box. Put on the lead.
