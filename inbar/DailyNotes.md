@@ -767,7 +767,7 @@ with open("colors.csv", "a") as csvFile:
     np.savetxt("colors.csv", One_D_Image, delimiter=",", header="Red, Green, Blue, Hue, Saturation, Color, Lightness, A*, B*", fmt='%3.f')
 ````
 
-## July 22, 2019
+## July 22-23, 2019
 ### Task 13: Assemble and put small sensors in housing
 #### 13.1 Set the cable
  - Take a big 8-wire cable
