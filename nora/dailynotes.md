@@ -168,3 +168,8 @@ print(9 * a + b)
 C:\Users\norad\Desktop\Python-lesson>python lesson1.py
 ```
 ##### This site: https://www.programiz.com/python-programming/tutorial has a lot of helpful information on it.
+## 07/30/2019 Monday </br>
+### 1.1 I am learning Python </br>
+### It's a learning curve </br>
+### I am learning how to upload a picture (in both color and grayscale) </br>
+### I started to learn how to use RGB to design my own picture </br>
