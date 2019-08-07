@@ -495,6 +495,8 @@ Today's work consisted of two main tasks.
 
 Lakitha is working on overlaying images of a thermal and rgb camera for various distances. He has calibrated them for short distances with a small chess board, but for larger distances he needed a larger grid. Thus, we built that by pasting aluminum squares (cold) on a foam board (warm).
 
+High level program flow can be found in this directory as `VapeDetectorProgramFlow.jpg`
+
 ### Task 6: Develop Python Script for Saving Ozone Sensor Data to CSV
 
 Using PuTTY terminal emulator we communicated with Ozone Sensor 108L to print ozone concentration, temperature, presure, and voltage. Python script was developed to convert data received from Sensor 108L to csv format and save. This script can be found in this directory as SerialReaderOzone.py.
@@ -505,9 +507,5 @@ Program's basic flow was receiving sensor data and saving it in a dictionary, th
 
 After saving to csv we noticed that '\n' and '\r' and '~' was appearing in the csv which was undesirable, thus we using `string.rstrip(k)` for `k in ['\n', '\r', '~']` to rid each line of these characters.
 
-
-
-**To Do List:**
-- Learn RNN, CNN, LSTM mechanics
-- Train and test monodepth on image
-- Learn Python-TensorFlow-Keras
+**Homework:**
+- ~~Finish daily notes~~
