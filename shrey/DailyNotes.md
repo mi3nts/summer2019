@@ -484,5 +484,6 @@ All code can be found under NanoUTD/sensorCode.
 
 References for quadrotor SLAM - CNNs for 2D images to depth mapping:
 
-(1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/ \
+(1): http://visual.cs.ucl.ac.uk/pubs/monoDepth/
 (2): https://github.com/mrharicot/monodepth/
+
