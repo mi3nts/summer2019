@@ -478,10 +478,9 @@ All code can be found under NanoUTD/sensorCode.
 
 **Homework:**
 - ~~Finish daily notes~~
-- Continue learning C++
-- Start learning Python-TensorFlow
+- ~~Make Basic Python Projects~~
+- ~~Start learning Python-TensorFlow~~
 - Learn mechanics of RNNs, LSTM, CNNs
-- Continue RHW physics
 
 References for quadrotor SLAM - CNNs for 2D images to depth mapping:
 
@@ -489,3 +488,26 @@ References for quadrotor SLAM - CNNs for 2D images to depth mapping:
 (2): https://github.com/mrharicot/monodepth/
 __________________________________________________________________________________________________________________________________
 ## Tuesday August 6, 2019
+
+Today's work consisted of two main tasks.
+
+### Task 5: Construct Large Checkerboard Grid for Overlay Calibration of Thermal and Rgb Cameras
+
+Lakitha is working on overlaying images of a thermal and rgb camera for various distances. He has calibrated them for short distances with a small chess board, but for larger distances he needed a larger grid. Thus, we built that by pasting aluminum squares (cold) on a foam board (warm).
+
+### Task 6: Develop Python Script for Saving Ozone Sensor Data to CSV
+
+Using PuTTY terminal emulator we communicated with Ozone Sensor 108L to print ozone concentration, temperature, presure, and voltage. Python script was developed to convert data received from Sensor 108L to csv format and save. This script can be found in this directory as SerialReaderOzone.py.
+
+Receiving baudrate was 2400.
+
+Program's basic flow was receiving sensor data and saving it in a dictionary, then logging each dictionary update to csv format in a separate directory.
+
+After saving to csv we noticed that '\n' and '\r' and '~' was appearing in the csv which was undesirable, thus we using `string.rstrip(k)` for `k in ['\n', '\r', '~']` to rid each line of these characters.
+
+
+
+**To Do List:**
+- Learn RNN, CNN, LSTM mechanics
+- Train and test monodepth on image
+- Learn Python-TensorFlow-Keras
