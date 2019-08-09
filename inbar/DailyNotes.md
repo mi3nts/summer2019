@@ -810,4 +810,11 @@ with open("colors.csv", "a") as csvFile:
 ## August 6, 2019
 ### Task 15: Create a big chessboard pattern
  - Use metallic tape to create a chessboard pattern on a big piece of foam. This will be used to calibrate the sensor on the thermal camera.
- 
+### Task 16: Read data from a model15 sensor
+#### 16.1 Change previously written code to read new data format
+ - Copy code from sensorReader.py to otherSensorReader.py and update necessary changes
+ - Change from separating data by `:` to separating by `,`
+ - Read by line instead of by character
+ - Etc.
+#### 16.2 Write script to access menu of the sensor
+
