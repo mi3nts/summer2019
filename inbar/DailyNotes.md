@@ -774,7 +774,7 @@ with open("colors.csv", "a") as csvFile:
  - Cut both ends to expose wires
  - Cut down the white-orange and white-brown wires, to leave 6 wires on both ends.
  - Put the wire through the box with all the arduinos and put the knob on to lock it in.
-#### Shield side
+#### 13.2 Shield side
  - Put the top of the housing through the wire
  - Connect three I2C cables together, twisting together like colors
  - Take a Shinyei cable (5-pin connector with three wires, red, black, yellow) and connect a black wire to both the spots the are missing wire
@@ -787,7 +787,7 @@ with open("colors.csv", "a") as csvFile:
  - Connect the black wire left on the Shinyei to the white-blue wire in the cable
  - Connect sensors (CO2, BME280, and multichannel gas) to all the 4-pin ocnnectors, and connect the Shinyei to the Shinyei cable.
  - Put all of this through the housing and connect to the top of the housing.
-#### Box Side
+#### 13.3 Box Side
  - Get two 4-pin connector (I2C). For one of them, cut all wires but the yellow one; this will be the D7 connector, and the unaltered one will be the I2C.
  - Get another 4-pin connector that only has 3 wires (black, red, yellow). This will be the D8 connector.
  - Twist the red wires of the I2C and D8 together and solder to the orange wire of the 6-wire cable.
@@ -797,3 +797,17 @@ with open("colors.csv", "a") as csvFile:
  - Solder the yellow wire of the I2c to the green wire of the 6-wire cable.
  - Solder the yellow wire of the D7 to the blue-white wire of the 6-wire cable.
  - Connect the D7, D8, and I2C to their respective spots on the Arduino shield in the box. Put on the lead.
+
+## August 5, 2019
+### Task 14: Prepare the bigger sensors
+#### 14.1 Connect sensors to the stand
+ - Connect BME280, Shinyei, multichannel gas sensor, and CO2 sensors to their respective places, and screw into place.
+#### 14.2 Prepare Shinyei cable
+ - Take the Shinyei five-pin connector with three wires. 
+ - Connect black wires to the empty spots.
+ - Solder the two black wires on either side of the 5-pin connector to the one resistor, and extend with an extra wire. Cover with heat shrink.
+
+## August 6, 2019
+### Task 15: Create a big chessboard pattern
+ - Use metallic tape to create a chessboard pattern on a big piece of foam. This will be used to calibrate the sensor on the thermal camera.
+ 
