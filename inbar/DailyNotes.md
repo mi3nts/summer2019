@@ -818,3 +818,9 @@ with open("colors.csv", "a") as csvFile:
  - Etc.
 #### 16.2 Write script to access menu of the sensor
 
+## August 9, 2019
+### Task 17: Use Machine Learning to Predict Sensor Data
+ - Create a linear regressor, neural network, and random forest algorithm predictor for each of a wine quality dataset, and a data set consisting of data from grimms and LoRa sensors, where the LoRa data is used to predict corresponding grimms data.
+ - Used sklearn library for all machiine learning algorithms
+ - Used pandas to handle datasets
+ - See code on documents wine.py and calibrate.py
