@@ -509,3 +509,9 @@ After saving to csv we noticed that '\n' and '\r' and '~' was appearing in the c
 
 **Homework:**
 - ~~Finish daily notes~~
+________________________________________________________________________________________________________________________________________
+## Wednesday August 7th, 2019
+
+Today's work was similar to day 2. Adam and I built Shinyei sensor central management units. I made 5 and he cranked out 10 for a total of 15. They are almost 3/4th the way to their 100 units goal.
+
+A picture of what the final product looks like can be found in this directory as `ShinyeiCMUPicture.jpg`.
